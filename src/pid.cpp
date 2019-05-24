@@ -236,9 +236,10 @@ void Pid::setGains(double p, double i, double d, double i_max, double i_min, boo
 void Pid::setGains(const Gains &gains)
 {
   gains_buffer_.writeFromNonRT(gains);
+  // ROS_WARN_STREAM("Updated gains...");
 
   // Update dynamic reconfigure with the new gains
-  updateDynamicReconfig(gains);
+  // updateDynamicReconfig(gains);
 }
 
 void Pid::updateDynamicReconfig()

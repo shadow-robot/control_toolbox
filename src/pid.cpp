@@ -327,8 +327,10 @@ double Pid::computeCommand(double error, double error_dot, ros::Duration dt)
   p_error_ = error; // this is error = target - state
   d_error_ = error_dot;
 
-  if (dt == ros::Duration(0.0) || std::isnan(error) || std::isinf(error) || std::isnan(error_dot) || std::isinf(error_dot))
+  if (dt == ros::Duration(0.0) || std::isnan(error) || std::isinf(error) || std::isnan(error_dot) || std::isinf(error_dot)){
+    ROS_ERROR_STREAM("PID ERROR: (dt == ros::Duration(0.0) || std::isnan(error) || std::isinf(error) || std::isnan(error_dot) || std::isinf(error_dot))");
     return 0.0;
+  }
 
   // Calculate proportional contribution to command
   p_term = gains.p_gain_ * p_error_;
